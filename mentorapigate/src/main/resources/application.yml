@@ -1,0 +1,39 @@
+spring:
+ cloud:
+   gateway:
+     routes:           
+       - id: admin-service
+         uri: lb://ADMIN-SERVICE
+         predicates:
+           - Path=/admins/**
+         filters:
+           - AuthenticationFilter
+           
+       - id: mentortraining-service
+         uri: lb://MENTOR-TRAINING-SERVICE
+         predicates:
+           - Path=/mentors/**,/technicalCourses/**,/trainingTrackers/**
+         filters:
+           - AuthenticationFilter
+           
+       - id: user-service
+         uri: lb://USER-SERVICE
+         predicates:
+           - Path=/users/**,/userown/**
+         filters:
+           - AuthenticationFilter
+           
+       - id: jwt-service
+         uri: lb://MENTORJWT-SERVICE
+         predicates:
+           - Path=/persons/**,/jwt/**
+         filters:
+           - AuthenticationFilter
+
+ application:
+   name: MENTOR-GATEWAY
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
