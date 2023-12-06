@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("pass", user.getPassword());
 		RestTemplate restTemplate=new RestTemplate();
-		String s=restTemplate.getForObject("http://localhost:4444/jwt/getPass/{pass}", String.class,params);
+		String s=restTemplate.getForObject("http://localhost:8080/jwt/getPass/{pass}", String.class,params);
 		user.setPassword(s);
 		User use=userRepository.save(user);
 		return use;
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("pass", user.getPassword());
 		RestTemplate restTemplate=new RestTemplate();
-		String s=restTemplate.getForObject("http://localhost:4444/jwt/getPass/{pass}", String.class,params);
+		String s=restTemplate.getForObject("http://localhost:8080/jwt/getPass/{pass}", String.class,params);
 		use.setPassword(s);
 		userRepository.save(use);
 		return use;

@@ -6,29 +6,29 @@ spring:
          uri: lb://ADMIN-SERVICE
          predicates:
            - Path=/admins/**
-         filters:
-           - AuthenticationFilter
+#         filters:
+#           - AuthenticationFilter
            
        - id: mentortraining-service
          uri: lb://MENTOR-TRAINING-SERVICE
          predicates:
            - Path=/mentors/**,/technicalCourses/**,/trainingTrackers/**
-         filters:
-           - AuthenticationFilter
+#         filters:
+#           - AuthenticationFilter
            
        - id: user-service
          uri: lb://USER-SERVICE
          predicates:
            - Path=/users/**,/userown/**
-         filters:
-           - AuthenticationFilter
+#         filters:
+#           - AuthenticationFilter
            
        - id: jwt-service
          uri: lb://MENTORJWT-SERVICE
          predicates:
            - Path=/persons/**,/jwt/**
-         filters:
-           - AuthenticationFilter
+#         filters:
+#           - AuthenticationFilter
 
  application:
    name: MENTOR-GATEWAY

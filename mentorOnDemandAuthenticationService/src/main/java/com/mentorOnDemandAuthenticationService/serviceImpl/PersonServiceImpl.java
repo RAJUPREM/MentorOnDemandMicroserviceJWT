@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,7 @@ import com.mentorOnDemandAuthenticationService.exception.PersonNotFoundException
 import com.mentorOnDemandAuthenticationService.external.Admin;
 import com.mentorOnDemandAuthenticationService.external.Mentor;
 import com.mentorOnDemandAuthenticationService.external.User;
+import com.mentorOnDemandAuthenticationService.helper.JWTService;
 import com.mentorOnDemandAuthenticationService.repository.PersonRepository;
 import com.mentorOnDemandAuthenticationService.service.PersonService;
 
@@ -25,6 +29,9 @@ public class PersonServiceImpl implements PersonService{
 
 	@Autowired
 	PersonRepository personRepository;
+	
+	@Autowired
+	JWTService jWTService;
 	
 	
 	@Override
@@ -47,14 +54,39 @@ public class PersonServiceImpl implements PersonService{
 	@Override
 	public void savePerson() {
 		
+		List<Person> lperson=personRepository.findAll();
+		
+		Optional<Person> tempPerson=personRepository.findByPersonName("DEFAULT");
+		
+		if(tempPerson.isEmpty())
+		{
+			Person person=new Person();
+			person.setPersonName("DEFAULT");
+			person.setPassword(new BCryptPasswordEncoder().encode("DEFAULT"));
+			person.setRole("ADMIN");
+			personRepository.save(person);
+		}
+		
+		
+		
+		
 		RestTemplate restTemplate=new RestTemplate();
 		
-		ResponseEntity<Admin[]> res=restTemplate.getForEntity("http://localhost:1111/admins/",Admin[].class);
+		String token=jWTService.generateToken("DEFAULT");
 		
-		Admin[] ladmin=res.getBody();
+		HttpHeaders headers=new HttpHeaders();
+		headers.add("Authorization","Bearer " +token);
+		
+		HttpEntity<String> request=new HttpEntity<String>(headers);
+		
+		ResponseEntity<Admin[]> resAdmin=restTemplate.exchange("http://localhost:8080/admins/",HttpMethod.GET,request,Admin[].class);
+		
+//		ResponseEntity<Admin[]> res=restTemplate.getForEntity("http://localhost:1111/admins/",Admin[].class);
+		
+		Admin[] ladmin=resAdmin.getBody();
 		//List<Admin> ladmin=(List<Admin>) RestTemplate.getForObject("http://localhost:1111/admins/", Admin.class);
 		
-		List<Person> lperson=personRepository.findAll();
+		
 
 		for(Admin admin:ladmin)
 		{
@@ -70,7 +102,11 @@ public class PersonServiceImpl implements PersonService{
 			}
 		}
 		
-		Mentor[] lmentor=restTemplate.getForEntity("http://localhost:2222/mentors/", Mentor[].class).getBody();
+		ResponseEntity<Mentor[]> resMentor=restTemplate.exchange("http://localhost:8080/mentors/",HttpMethod.GET,request,Mentor[].class);
+		
+		//Mentor[] lmentor=restTemplate.getForEntity("http://localhost:2222/mentors/", Mentor[].class).getBody();
+		
+		Mentor[] lmentor=resMentor.getBody();
 		
 		for(Mentor mentor:lmentor)
 		{
@@ -85,8 +121,11 @@ public class PersonServiceImpl implements PersonService{
 			}
 		}
 		
+		ResponseEntity<User[]> resUser=restTemplate.exchange("http://localhost:8080/users/",HttpMethod.GET,request,User[].class);
 		
-		User[] luser=restTemplate.getForObject("http://localhost:3333/users/", User[].class);
+		User[] luser=resUser.getBody();
+		
+		//User[] luser=restTemplate.getForObject("http://localhost:3333/users/", User[].class);
 		
 		for(User user:luser)
 		{
@@ -120,6 +159,16 @@ public class PersonServiceImpl implements PersonService{
 		Person person=tempPerson.get();
 		personRepository.delete(person);
 		return person;
+	}
+
+
+	@Override
+	public Person saveDefaultAdmin() {
+		Person defaultADMIN=new Person();
+		defaultADMIN.setPersonName("DEFAULT");
+		defaultADMIN.setPassword("DEFAULT");
+		defaultADMIN.setRole("ADMIN");
+		return defaultADMIN;
 	}
 	
 	

@@ -17,5 +17,7 @@ public interface PersonService {
 	public Person updatePersonByPersonId( Person person, int personId);
 	
 	public Person deletePersonByPersonId(int personId);
+	
+	public Person saveDefaultAdmin();
 
 }

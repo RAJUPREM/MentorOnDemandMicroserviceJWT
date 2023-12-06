@@ -1,5 +1,6 @@
 package com.mentorOnDemandAuthenticationService.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mentorOnDemandAuthenticationService.entity.JWTRequest;
 import com.mentorOnDemandAuthenticationService.entity.JWTResponse;
+import com.mentorOnDemandAuthenticationService.entity.Person;
 import com.mentorOnDemandAuthenticationService.exception.PersonNotFoundException;
 import com.mentorOnDemandAuthenticationService.helper.JWTService;
 import com.mentorOnDemandAuthenticationService.repository.PersonRepository;
@@ -49,6 +51,13 @@ public class JWTController {
 	{
 		return "welcome to jwt cotroller";
 	}
+    
+    @GetMapping("/defaultADMIN")	
+    public ResponseEntity<Person> defautlADMIN()
+	{
+    	Person defaultADMIN=personServiceImpl.saveDefaultAdmin();
+    	return new ResponseEntity<Person>(defaultADMIN,HttpStatus.OK);
+	}
 
     @PostMapping("/token")
     public ResponseEntity<JWTResponse> getToken(@RequestBody JWTRequest jwtRequest){
@@ -63,7 +72,7 @@ public class JWTController {
    //     adminRepository.save(new Admin(1,"sourabh",new BCryptPasswordEncoder().encode("Sourabh@123")));   
         
         
-       // personServiceImpl.savePerson();
+        personServiceImpl.savePerson();
  		
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getPersonName()

@@ -67,9 +67,10 @@ public class TechnicalCourseController {
         return new ResponseEntity<>(newTechnicalCourse, HttpStatus.OK);
     }
     
-    @GetMapping("/mentors")
+    @PostMapping("/mentors")
     public ResponseEntity<List<Mentor>> getAllMentorsByTechnicalCourseName(@RequestBody TechnicalCourseDto technicalCourseDto)
     {
+    	System.out.println("this is raju"+technicalCourseDto);
     	List<Mentor> lmentor=technicalCourseServiceImpl.getAllMentorsByTechnicalCourseName(technicalCourseDto.getTechnicalCourseName());
     	return new ResponseEntity<>(lmentor,HttpStatus.OK);
     }
