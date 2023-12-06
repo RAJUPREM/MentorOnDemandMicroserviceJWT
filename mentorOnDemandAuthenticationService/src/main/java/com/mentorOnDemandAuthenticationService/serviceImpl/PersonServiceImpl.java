@@ -166,8 +166,9 @@ public class PersonServiceImpl implements PersonService{
 	public Person saveDefaultAdmin() {
 		Person defaultADMIN=new Person();
 		defaultADMIN.setPersonName("DEFAULT");
-		defaultADMIN.setPassword("DEFAULT");
+		defaultADMIN.setPassword(new BCryptPasswordEncoder().encode("DEFAULT"));
 		defaultADMIN.setRole("ADMIN");
+		personRepository.save(defaultADMIN);
 		return defaultADMIN;
 	}
 	
