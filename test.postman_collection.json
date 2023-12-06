@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "8aee6af7-6500-4aab-878d-ca7b99883369",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30347421",
+		"_collection_link": "https://warped-sunset-217651.postman.co/workspace/New-Team-Workspace~22c295c8-4321-48ee-84cf-5fadf554a6a7/collection/30347421-8aee6af7-6500-4aab-878d-ca7b99883369?action=share&source=collection_link&creator=30347421"
+	},
+	"item": [
+		{
+			"name": "jwt admin token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"personName\":\"chulbul\",\r\n    \"password\":\"Chulbul@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/jwt/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jwt",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxNzYxODU2LCJleHAiOjE3MDE3NjM2NTZ9.bUK7c9iqll2sXQ-Ljswn5eAQM7-WqDVu8-YiS0zlp1U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"adminName\":\"minu\",\r\n    \"adminPassword\":\"Minu@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admins/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admins",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save mentor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxNzYxODU2LCJleHAiOjE3MDE3NjM2NTZ9.bUK7c9iqll2sXQ-Ljswn5eAQM7-WqDVu8-YiS0zlp1U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mentorName\":\"B\",\r\n    \"mentorPassword\":\"B@123\",\r\n    \"mentorExperience\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/mentors/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mentors",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save technical couses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb29uIiwiaWF0IjoxNzAxNzQyMzY1LCJleHAiOjE3MDE3NDQxNjV9.nSDCf2_eM-8cvrvKCxzOopHeIAwgdd2GrIO4tdvQ290",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"technicalCourseName\":\"Jdbc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/technicalCourses/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"technicalCourses",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add technical course",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxNzYyNTM1LCJleHAiOjE3MDE3NjQzMzV9.xmTIim7R75-V0M5pMzawgZrNP_R_8KOYR_xLp9brDeM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"technicalCourseId\":6,\r\n    \"mentorId\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/mentors/addTechnicalCourse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mentors",
+						"addTechnicalCourse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get mentor by technical course name",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxODMwMDA3LCJleHAiOjE3MDE4MzE4MDd9.KviCIPlL4iPllACpvFdxl9sBItXiNchq8eR-vVdh-4c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"technicalCourseName\":\"SPRING BOOT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/technicalCourses/mentors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"technicalCourses",
+						"mentors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "training tracker save",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxNzYyOTY1LCJleHAiOjE3MDE3NjQ3NjV9.wllm0_WGsm5SP6mwfgO3Bc1o_FxLSWp4RR6a-x5nNJ4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"trainingTotalDuration\":\"60 Days\",\r\n    \"trainingCompletionStatus\":false,\r\n    \"trainingDaysLeft\":20,\r\n    \"technicalCourseId\":6,\r\n    \"mentorId\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainingTrackers/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainingTrackers",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxNzYzMDU5LCJleHAiOjE3MDE3NjQ4NTl9.yeEbjeB90P8AQ2hscLg9AdY9gYdQ12aSUmOqj_o8kRM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"D\",\r\n    \"password\":\"D@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user check mentor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxODMwMDA3LCJleHAiOjE3MDE4MzE4MDd9.KviCIPlL4iPllACpvFdxl9sBItXiNchq8eR-vVdh-4c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"technicalCourseName\":\"SPRING BOOT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/userown/mentors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userown",
+						"mentors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"personName\":\"D\",\r\n    \"password\":\"D@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/jwt/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jwt",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user select mentor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaHVsYnVsIiwiaWF0IjoxNzAxODMxMjE5LCJleHAiOjE3MDE4MzMwMTl9.OZ1C45CzT0Da-FwkVyznXQv-7iVKtUA6LNBqszKT15E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"trainingTotalDuration\":\"60 Days\",\r\n    \"trainingCompletionStatus\":false,\r\n    \"trainingDaysLeft\":20,\r\n    \"technicalCourseId\":2,\r\n    \"mentorId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/userown/select",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userown",
+						"select"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save default admin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jwt/defaultADMIN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jwt",
+						"defaultADMIN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get default token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"personName\":\"DEFAULT\",\r\n    \"password\":\"DEFAULT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/jwt/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jwt",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
